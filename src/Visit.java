@@ -4,9 +4,9 @@ public class Visit {
     String doctorName;
     String diagnosis;
     String treatment;
-    Visit next; // Pointer for the Singly Linked List
+    Visit next; 
 
-    // Constructor
+    
     public Visit(String visitID, String visitDate, String doctorName, String diagnosis, String treatment) {
         this.visitID = visitID;
         this.visitDate = visitDate;

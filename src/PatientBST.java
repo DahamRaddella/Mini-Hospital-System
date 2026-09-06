@@ -1,12 +1,12 @@
 public class PatientBST {
     Patient root;
 
-    // මුලින්ම BST එක හිස්ව (empty) පටන් ගනී
+   
     public PatientBST() {
         root = null;
     }
 
-    // 1. රෝගියෙකු ඇතුළත් කිරීම (Insert a new patient)
+   
     public void insert(Patient newPatient) {
         root = insertRec(root, newPatient);
         System.out.println("Patient " + newPatient.patientName + " added successfully.");
@@ -17,7 +17,7 @@ public class PatientBST {
             root = newPatient;
             return root;
         }
-        // Patient ID එක අනුව වමට හෝ දකුණට යොමු කිරීම
+        
         if (newPatient.patientID < root.patientID) {
             root.left = insertRec(root.left, newPatient);
         } else if (newPatient.patientID > root.patientID) {
@@ -26,7 +26,7 @@ public class PatientBST {
         return root;
     }
 
-    // 2. රෝගියෙකු සෙවීම (Search for a patient using Patient ID)
+   
     public Patient search(int patientID) {
         Patient result = searchRec(root, patientID);
         if (result != null) {
@@ -47,7 +47,7 @@ public class PatientBST {
         return searchRec(root.right, patientID);
     }
 
-    // 3. රෝගීන් පිළිවෙලට පෙන්වීම (In-order traversal - ascending order of Patient ID)
+    
     public void displayPatients() {
         System.out.println("--- Patient Records (Sorted by ID) ---");
         inorderRec(root);
@@ -62,7 +62,7 @@ public class PatientBST {
         }
     }
 
-    // 4. රෝගියෙකු මකා දැමීම (Delete a patient)
+   
     public void deletePatient(int patientID) {
         root = deleteRec(root, patientID);
     }
@@ -72,22 +72,22 @@ public class PatientBST {
             return root;
         }
 
-        // මකා දැමිය යුතු ID එක සොයාගෙන යාම
+        
         if (patientID < root.patientID) {
             root.left = deleteRec(root.left, patientID);
         } else if (patientID > root.patientID) {
             root.right = deleteRec(root.right, patientID);
         } else {
-            // Node එක සොයාගත්තාට පසු (දරුවන් එකක් හෝ නොමැති අවස්ථා)
+            
             if (root.left == null) {
                 return root.right;
             } else if (root.right == null) {
                 return root.left;
             }
 
-            // දරුවන් දෙදෙනෙකු සිටින අවස්ථාව (දකුණු පස ඇති කුඩාම අගය ගෙන ඒම)
+           
             root.patientID = minValue(root.right);
-            // එම කුඩාම අගය තිබූ පැරණි ස්ථානය මකා දැමීම
+            
             root.right = deleteRec(root.right, root.patientID);
         }
         return root;
